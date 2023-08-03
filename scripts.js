@@ -11,7 +11,7 @@ function loadCSVFile() {
 
 loadCSVFile();
 
-const poemName = document.getElementById('searchBar').value.toLowerCase();
+const poemName = document.getElementById('form1').value.toLowerCase();
 const foundPoem = data.find(entry => entry[2] === poemName);
 
 if (foundPoem) {
