@@ -11,6 +11,7 @@ function loadCSVFile() {
       },
       error: function (error) {
         reject(error);
+        console.error("Error parsing CSV file:", error);
       },
     });
   });
