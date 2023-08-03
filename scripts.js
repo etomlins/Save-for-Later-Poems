@@ -7,6 +7,7 @@ function loadCSVFile() {
       complete: function (parsedData) {
         const data = parsedData.data;
         resolve(data);
+        console.log(data);
       },
       error: function (error) {
         reject(error);
