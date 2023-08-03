@@ -1,10 +1,11 @@
 function loadCSVFile() {
     const csvFilePath = "kaggle_poem_dataset.csv";
 
-    Papa.parse(csvFilePath, {
-        download: true,
-        complete: function (parsedData) {
-            console.log(parsedData.data);
+  Papa.parse(csvFilePath, {
+    download: true,
+    complete: function (parsedData) {
+      const data = parsedData.data;
+      console.log(data); 
         }
     });
 }
