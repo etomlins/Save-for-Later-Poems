@@ -1,6 +1,7 @@
 function loadCSVFile() {
   const csvFilePath = "kaggle_poem_dataset.csv";
-
+  console.log("loading the file");
+  
   return new Promise((resolve, reject) => {
     Papa.parse(csvFilePath, {
       download: true,
@@ -8,6 +9,8 @@ function loadCSVFile() {
         const data = parsedData.data;
         resolve(data);
         console.log(data);
+        console.log("it worked!");
+
       },
       error: function (error) {
         reject(error);
