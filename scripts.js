@@ -9,6 +9,9 @@ function loadCSVFile() {
 
       const poemName = document.getElementById('form1').value.toLowerCase();
       const foundPoem = data.find(entry => entry[2] === poemName);
+      if (!foundPoem) {
+        console.log('did not work :(')
+      }
 
       if (foundPoem) {
         const [id, author, title, number, content] = foundPoem;
