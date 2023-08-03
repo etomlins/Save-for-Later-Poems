@@ -7,12 +7,15 @@ function loadCSVFile() {
       const data = parsedData.data;
       console.log(data); 
 
-      const poemName = document.getElementById('form1').value.toLowerCase();
+      // make event listener for when the find poem button gets clicked
+      document.getElementbyId('find-poem-click').addEventListener("click", displayPoem);
+
+    function displayPoem() {
+        const poemName = document.getElementById('form1').value.toLowerCase();
       const foundPoem = data.find(entry => entry[2] === poemName);
       if (!foundPoem) {
         console.log('did not work :(')
       }
-
       if (foundPoem) {
         const [id, author, title, number, content] = foundPoem;
         console.log(`Found poem with title "${title}" by ${author}:`);
@@ -20,6 +23,11 @@ function loadCSVFile() {
       } else {
         console.log(`Poem titled "${poemName}" not found in the array.`);
       }
+
+    }
+
+      
+      
     }
   });
 }
