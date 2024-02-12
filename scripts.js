@@ -7,26 +7,35 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(response => response.text())
     .then(csvText => {
       Papa.parse(csvText, {
-        header: true, // Ensure your CSV has headers
+        header: true,
         complete: function(results) {
           csvData = results.data;
-          console.log("Finished loading and parsing:", csvData);
           // Setup the event listener here to ensure data is loaded
-          document.getElementById("find-poem-click").addEventListener("click", displayPoem);
+          document.getElementById("find-poem-click").addEventListener("click", function() {
+            const poemName = document.getElementById('poem-search-input').value.toLowerCase();
+            const foundPoem = csvData.find(entry => entry['Poem Title'].toLowerCase() === poemName);
+            if (!foundPoem) {
+              displayNotFoundMessage();
+            } else {
+              displayPoem({
+                title: foundPoem['Poem Title'],
+                author: foundPoem['Author Name'],
+                content: foundPoem['Poem Content']
+              });
+            }
+          });
         }
       });
     })
     .catch(error => console.error("Error loading CSV file:", error));
-
-  function displayPoem() {
-    const poemName = document.getElementById('form1').value.toLowerCase();
-    // Adjust the keys according to your CSV file headers
-    const foundPoem = csvData.find(entry => entry['Poem Title'].toLowerCase() === poemName); // Correct keys according to your CSV structure
-    if (!foundPoem) {
-      console.log('Poem not found :(');
-    } else {
-      console.log(`Found poem with title "${foundPoem['Poem Title']}" by ${foundPoem['Author Name']}:`);
-      console.log(`Content: ${foundPoem['Poem Content']}`); // Ensure these match your CSV headers
-    }
-  }
 });
+
+function displayPoem(poem) {
+  var displayArea = document.getElementById('poem-display-area');
+  displayArea.innerHTML = `<h2>${poem.title}</h2><p>${poem.author}</p><pre>${poem.content}</pre>`;
+}
+
+function displayNotFoundMessage() {
+  var displayArea = document.getElementById('poem-display-area');
+  displayArea.innerHTML = "<p>Poem not found. Try another search!</p>";
+}
