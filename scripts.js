@@ -30,12 +30,19 @@ document.addEventListener('DOMContentLoaded', function() {
     .catch(error => console.error("Error loading CSV file:", error));
 });
 
-function displayPoem(poem) {
-  var displayArea = document.getElementById('poem-display-area');
-  displayArea.innerHTML = `<h2>${poem.title}</h2><p>${poem.author}</p><pre>${poem.content}</pre>`;
-}
+
 
 function displayNotFoundMessage() {
   var displayArea = document.getElementById('poem-display-area');
   displayArea.innerHTML = "<p>Poem not found. Try another search!</p>";
+}
+function displayPoem(poem) {
+  var displayArea = document.getElementById('poem-display-area');
+  displayArea.innerHTML = `<h2>${poem.title}</h2><p>${poem.author}</p><pre>${poem.content}</pre><button onclick="closePoemDisplay()">Close</button>`;
+  displayArea.style.display = 'block'; // Show the pop-up
+}
+
+function closePoemDisplay() {
+  var displayArea = document.getElementById('poem-display-area');
+  displayArea.style.display = 'none'; // Hide the pop-up
 }

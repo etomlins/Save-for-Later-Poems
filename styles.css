@@ -55,3 +55,18 @@ input {
 .form-outline {
     margin-bottom: 5px;
 }
+.poem-popup {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it sits above other content */
+    overflow-y: auto; /* Enable scrolling for long content */
+  }
+  
