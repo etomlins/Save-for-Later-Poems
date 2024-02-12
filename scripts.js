@@ -13,14 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
           // Setup the event listener here to ensure data is loaded
           document.getElementById("find-poem-click").addEventListener("click", function() {
             const poemName = document.getElementById('poem-search-input').value.toLowerCase();
-            const foundPoem = csvData.find(entry => entry['Poem Title'].toLowerCase() === poemName);
+            const foundPoem = csvData.find(entry => entry['Title'].toLowerCase() === poemName);
             if (!foundPoem) {
               displayNotFoundMessage();
             } else {
               displayPoem({
-                title: foundPoem['Poem Title'],
-                author: foundPoem['Author Name'],
-                content: foundPoem['Poem Content']
+                title: foundPoem['Title'],
+                author: foundPoem['Author'],
+                content: foundPoem['Content']
               });
             }
           });
