@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
         header: true,
         complete: function(results) {
           csvData = results.data;
-          // Setup the event listener here to ensure data is loaded
           document.getElementById("find-poem-click").addEventListener("click", function() {
             const poemName = document.getElementById('poem-search-input').value.toLowerCase();
             const foundPoem = csvData.find(entry => entry['Title'].toLowerCase() === poemName);
@@ -30,16 +29,16 @@ document.addEventListener('DOMContentLoaded', function() {
     .catch(error => console.error("Error loading CSV file:", error));
 });
 
-
-
 function displayNotFoundMessage() {
-  var displayArea = document.getElementById('poem-display-area');
+  const displayArea = document.getElementById('poem-display-area');
   displayArea.innerHTML = "<p>Poem not found. Try another search!</p>";
+  displayArea.style.display = 'block'; // Make sure to show the display area if it was hidden
 }
+
 function displayPoem(poem) {
-  var displayArea = document.getElementById('poem-display-area');
-  displayArea.innerHTML = `<h2>${poem.title}</h2><p>${poem.author}</p><pre>${poem.content}</pre><button onclick="closePoemDisplay()">Close</button>`;
-  displayArea.style.display = 'block'; // Show the pop-up
+    const displayArea = document.getElementById('poem-display-area');
+    displayArea.innerHTML = `<h2>${poem.title}</h2><p>${poem.author}</p><pre>${poem.content}</pre>`;
+    displayArea.style.display = 'block'; // Show the poem content
 }
 
 function closePoemDisplay() {
