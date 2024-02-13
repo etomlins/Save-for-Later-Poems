@@ -12,9 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
           csvData = results.data;
           document.getElementById("find-poem-click").addEventListener("click", function() {
             const poemName = document.getElementById('poem-search-input').value.toLowerCase();
+            console.log(document.getElementById('poem-search-input'));
             const foundPoem = csvData.find(entry => entry['Title'].toLowerCase() === poemName);
             if (!foundPoem) {
               displayNotFoundMessage();
+              
             } else {
               displayPoem({
                 title: foundPoem['Title'],
