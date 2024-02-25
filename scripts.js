@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   const csvFilePath = "kaggle_poem_dataset.csv";
-  let csvData = []; // To store the CSV data
+  let csvData = []; 
 
-  // Use Papa.parse with fetch to load and parse the CSV file
   fetch(csvFilePath)
     .then(response => response.text())
     .then(csvText => {
@@ -34,16 +33,42 @@ document.addEventListener('DOMContentLoaded', function() {
 function displayNotFoundMessage() {
   const displayArea = document.getElementById('poem-display-area');
   displayArea.innerHTML = "<p>Poem not found. Try another search!</p>";
-  displayArea.style.display = 'block'; // Make sure to show the display area if it was hidden
+  displayArea.style.display = 'block'; 
 }
 
 function displayPoem(poem) {
-    const displayArea = document.getElementById('poem-display-area');
-    displayArea.innerHTML = `<h2>${poem.title}</h2><p>${poem.author}</p><pre>${poem.content}</pre>`;
-    displayArea.style.display = 'block'; // Show the poem content
+  const displayArea = document.getElementById('poem-display-area');
+  displayArea.innerHTML = `
+      <h2>${poem.title}</h2>
+      <p>${poem.author}</p>
+      <pre>${poem.content}</pre>
+      <button id="save-poem">Save Title</button>
+  `;
+  document.getElementById('save-poem').addEventListener('click', function() {
+      savePoemTitle(poem.title);
+  });
 }
+
 
 function closePoemDisplay() {
   var displayArea = document.getElementById('poem-display-area');
-  displayArea.style.display = 'none'; // Hide the pop-up
+  displayArea.style.display = 'none'; 
+}
+
+function displaySavedPoemTitles() {
+  const savedTitles = JSON.parse(localStorage.getItem('savedPoemTitles') || '[]');
+  const displayArea = document.getElementById('saved-titles-display-area');
+  if (savedTitles.length === 0) {
+      displayArea.innerHTML = "No saved titles.";
+      return;
+  }
+  const titlesList = savedTitles.map(title => `<li>${title}</li>`).join('');
+  displayArea.innerHTML = `<ul>${titlesList}</ul>`;
+}
+function savePoemTitle(title) {
+  let savedTitles = localStorage.getItem('savedPoemTitles');
+  savedTitles = savedTitles ? JSON.parse(savedTitles) : [];
+  savedTitles.push(title);
+  localStorage.setItem('savedPoemTitles', JSON.stringify(savedTitles));
+  alert("Poem title saved!");
 }
