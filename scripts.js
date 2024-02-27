@@ -47,6 +47,7 @@ function displayNotFoundMessage() {
 function displayPoem(poem) {
   const displayArea = document.getElementById('poem-display-area');
   displayArea.innerHTML = `
+      <button id="close-poem" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
       <h2>${poem.title}</h2>
       <p>${poem.author}</p>
       <pre>${poem.content}</pre>
