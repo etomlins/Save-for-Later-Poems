@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('clicked!');
             const poemName = document.getElementById('poem-search-input').value.toLowerCase();
             const foundPoem = csvData.find(entry => entry['Title'].toLowerCase().includes(poemName));
-            console.log(poemName); // Log the searched poem name
+            console.log(poemName); 
             if (!foundPoem) {
               console.log('poem not found :(');
               displayNotFoundMessage();
