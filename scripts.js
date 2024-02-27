@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         complete: function(results) {
           csvData = results.data;
           document.getElementById("find-poem-click").addEventListener("click", function() {
+            console.log('clicked!');
             const poemName = document.getElementById('poem-search-input').value.toLowerCase();
             const foundPoem = csvData.find(entry => entry['Title'].toLowerCase().includes(poemName));
             console.log(document.getElementById('poem-search-input'));
