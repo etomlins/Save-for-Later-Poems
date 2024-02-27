@@ -71,4 +71,8 @@ input {
     overflow-y: auto; 
     overflow-x: hidden; 
   }
+#close-poem {
+    font-weight: bold;
+    color: #333; 
+}
   
