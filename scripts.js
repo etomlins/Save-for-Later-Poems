@@ -8,17 +8,15 @@ document.addEventListener('DOMContentLoaded', function() {
       Papa.parse(csvText, {
         header: true,
         complete: function(results) {
-          
           csvData = results.data;
           document.getElementById("find-poem-click").addEventListener("click", function() {
             console.log('clicked!');
             const poemName = document.getElementById('poem-search-input').value.toLowerCase();
             const foundPoem = csvData.find(entry => entry['Title'].toLowerCase().includes(poemName));
-            console.log(poemName);
+            console.log(poemName); // Log the searched poem name
             if (!foundPoem) {
               console.log('poem not found :(');
               displayNotFoundMessage();
-
             } else {
               console.log('poem should be displayed now');
               displayPoem({
@@ -28,14 +26,16 @@ document.addEventListener('DOMContentLoaded', function() {
               });
             }
           });
-        document.addEventListener('click', function(e) {
-          if (e.target && e.target.id === 'close-poem') {
-            document.getElementById('poem-display-area').style.display = 'none';
-          }
         }
       });
     })
     .catch(error => console.error("Error loading CSV file:", error));
+
+  document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'close-poem') {
+      document.getElementById('poem-display-area').style.display = 'none';
+    }
+  });
 });
 
 function displayNotFoundMessage() {
