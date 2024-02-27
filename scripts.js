@@ -17,8 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const foundPoem = csvData.find(entry => entry['Title'].toLowerCase().includes(poemName));
             console.log(poemName);
             if (!foundPoem) {
+              console.log('poem not found :(');
               displayNotFoundMessage();
-              
+
             } else {
               displayPoem({
                 console.log('poem should be displayed now');
