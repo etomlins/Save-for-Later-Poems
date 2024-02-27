@@ -8,8 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
       Papa.parse(csvText, {
         header: true,
         complete: function(results) {
+          
           csvData = results.data;
           document.getElementById("find-poem-click").addEventListener("click", function() {
+            displayNotFoundMessage() 
             console.log('clicked!');
             const poemName = document.getElementById('poem-search-input').value.toLowerCase();
             const foundPoem = csvData.find(entry => entry['Title'].toLowerCase().includes(poemName));
