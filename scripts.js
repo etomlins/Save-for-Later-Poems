@@ -54,25 +54,3 @@ function displayPoem(poem) {
 }
 
 
-function closePoemDisplay() {
-  var displayArea = document.getElementById('poem-display-area');
-  displayArea.style.display = 'none'; 
-}
-
-function displaySavedPoemTitles() {
-  const savedTitles = JSON.parse(localStorage.getItem('savedPoemTitles') || '[]');
-  const displayArea = document.getElementById('saved-titles-display-area');
-  if (savedTitles.length === 0) {
-      displayArea.innerHTML = "No saved titles.";
-      return;
-  }
-  const titlesList = savedTitles.map(title => `<li>${title}</li>`).join('');
-  displayArea.innerHTML = `<ul>${titlesList}</ul>`;
-}
-function savePoemTitle(title) {
-  let savedTitles = localStorage.getItem('savedPoemTitles');
-  savedTitles = savedTitles ? JSON.parse(savedTitles) : [];
-  savedTitles.push(title);
-  localStorage.setItem('savedPoemTitles', JSON.stringify(savedTitles));
-  alert("Poem title saved!");
-}
