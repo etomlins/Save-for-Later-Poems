@@ -48,7 +48,8 @@ function displayPoem(poem) {
       <pre>${poem.content}</pre>
       <button id="save-poem">Save Title</button>
   `;
-  });
+  displayArea.style.display = 'block'; 
 }
+
 
 
