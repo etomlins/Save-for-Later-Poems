@@ -48,8 +48,6 @@ function displayPoem(poem) {
       <pre>${poem.content}</pre>
       <button id="save-poem">Save Title</button>
   `;
-  document.getElementById('save-poem').addEventListener('click', function() {
-      savePoemTitle(poem.title);
   });
 }
 
