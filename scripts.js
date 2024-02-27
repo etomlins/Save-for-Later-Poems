@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
               
             } else {
               displayPoem({
+                console.log('poem should be displayed now');
                 title: foundPoem['Title'],
                 author: foundPoem['Author'],
                 content: foundPoem['Content']
