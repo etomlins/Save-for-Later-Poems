@@ -28,6 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
               });
             }
           });
+        document.addEventListener('click', function(e) {
+          if (e.target && e.target.id === 'close-poem') {
+            document.getElementById('poem-display-area').style.display = 'none';
+          }
         }
       });
     })
