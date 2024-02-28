@@ -44,6 +44,11 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('poem-display-area').style.display = 'none';
     }
   });
+  document.getElementById("clear-saved-poems").addEventListener("click", function() {
+    localStorage.removeItem("savedPoems"); 
+    displaySavedPoems(); 
+  });
+
 
   displaySavedPoems();
 });
