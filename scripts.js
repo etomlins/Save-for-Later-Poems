@@ -31,11 +31,20 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .catch(error => console.error("Error loading CSV file:", error));
 
-  document.addEventListener('click', function(e) {
-    if (e.target && e.target.id === 'close-poem') {
+    document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'save-poem') {
+      const poem = {
+        title: document.querySelector('#poem-display-area h2').textContent,
+        author: document.querySelector('#poem-display-area p').textContent,
+        content: document.querySelector('#poem-display-area pre').textContent,
+      };
+      savePoem(poem);
+      displaySavedPoems();
+    } else if (e.target && e.target.id === 'close-poem') {
       document.getElementById('poem-display-area').style.display = 'none';
     }
   });
+
   displaySavedPoems();
 });
 
@@ -55,10 +64,6 @@ function displayPoem(poem) {
       <button id="save-poem">Save Title</button>
   `;
   displayArea.style.display = 'block'; 
-  document.getElementById("save-poem").addEventListener("click", function() {
-    savePoem(poem);
-    displaySavedPoems();
-  });
 }
 
 function savePoem(poem) {
