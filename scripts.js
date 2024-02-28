@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('poem-display-area').style.display = 'none';
     }
   });
+  displaySavedPoems();
 });
 
 function displayNotFoundMessage() {
@@ -54,7 +55,29 @@ function displayPoem(poem) {
       <button id="save-poem">Save Title</button>
   `;
   displayArea.style.display = 'block'; 
+  document.getElementById("save-poem").addEventListener("click", function() {
+    savePoem(poem);
+    displaySavedPoems();
+  });
 }
+
+function savePoem(poem) {
+  let savedPoems = JSON.parse(localStorage.getItem("savedPoems")) || [];
+  savedPoems.push(poem);
+  localStorage.setItem("savedPoems", JSON.stringify(savedPoems));
+}
+
+function displaySavedPoems() {
+  const savedPoems = JSON.parse(localStorage.getItem("savedPoems")) || [];
+  const listElement = document.getElementById("saved-poems");
+  listElement.innerHTML = "";
+  savedPoems.forEach(poem => {
+    const listItem = document.createElement("li");
+    listItem.textContent = `${poem.title} by ${poem.author}`;
+    listElement.appendChild(listItem);
+  });
+}
+
 
 
 
